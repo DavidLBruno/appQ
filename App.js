@@ -1,10 +1,13 @@
-import { NativeRouter } from "react-router-native";
-import Main from "./src/Main";
+// In App.js in a new project
 
-export default function App() {
-  return (
-    <NativeRouter>
-      <Main />
-    </NativeRouter>
-  );
+import * as React from "react";
+import { View, Text } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import MainStack from "./src/MainStack";
+
+function App() {
+  return <MainStack />;
 }
+
+export default App;

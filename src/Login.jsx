@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -7,17 +8,16 @@ import {
   Image,
   TextInput,
 } from "react-native";
-import { useHistory } from "react-router-native";
 
 const Login = () => {
-  const history = useHistory();
   const [password, setPassword] = useState("");
   const [dni, setDni] = useState("");
+  const navigation = useNavigation();
 
   const validation = () => {};
 
   const login = () => {
-    history.push("/other-page");
+    navigation.navigate("Home");
   };
 
   return (

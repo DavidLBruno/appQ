@@ -1,12 +1,9 @@
 import { View, Text, StyleSheet } from "react-native";
-import { Link } from "react-router-native";
 
 const Home = () => {
   return (
     <View style={styles.container}>
-      <Link to="/">
-        <Text>Ir a Acerca de</Text>
-      </Link>
+      <Text>Ir a Acerca de</Text>
     </View>
   );
 };
