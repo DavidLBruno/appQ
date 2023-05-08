@@ -1,34 +1,32 @@
 import Login from "./Login";
-import { useFonts } from "expo-font";
-import { useCallback, useEffect } from "react";
-import * as SplashScreen from "expo-splash-screen";
+import * as Font from "expo-font";
+import { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./Home";
-import { View } from "react-native-web";
 
 const Stack = createNativeStackNavigator();
 
 const MainStack = () => {
-  const [fontsLoaded] = useFonts({
-    Roboto: require("../assets/fonts/Roboto/Roboto-Light.ttf"),
-    RobotoBold: require("../assets/fonts/Roboto/Roboto-Bold.ttf"),
-  });
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
   useEffect(() => {
-    async function prepare() {
-      await SplashScreen.preventAutoHideAsync();
+    if (!fontsLoaded) {
+      loadFont();
     }
-    prepare();
-  }, []);
+  });
 
-  const onLayout = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
+  const loadFont = async () => {
+    await Font.loadAsync({
+      Roboto: require("../assets/fonts/Roboto/Roboto-Light.ttf"),
+      RobotoBold: require("../assets/fonts/Roboto/Roboto-Bold.ttf"),
+    });
+    setFontsLoaded(true);
+  };
 
-  if (!fontsLoaded) return null;
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <NavigationContainer>

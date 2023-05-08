@@ -8,6 +8,7 @@ import {
   Image,
   TextInput,
 } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 const Login = () => {
   const [password, setPassword] = useState("");
@@ -21,46 +22,44 @@ const Login = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Image
-        source={require("../assets/login/login-bg.jpg")}
-        style={styles.backgroundImage}
-      ></Image>
-      <View style={styles.card}>
-        <Image
-          source={require("../assets/logoUNR.png")}
-          style={styles.logo}
-        ></Image>
-        <Text style={styles.title}>Ingresar al sistema</Text>
-        <View style={styles.form}>
-          <View>
-            <Text>DNI</Text>
-            <TextInput
-              style={styles.textInput}
-              onChangeText={(text) => setDni(text)}
-              keyboardType="email-address"
-            />
-          </View>
-          <View>
-            <Text>Clave</Text>
-            <TextInput
-              style={styles.textInput}
-              onChangeText={(text) => setPassword(text)}
-              secureTextEntry
-            />
-          </View>
-          <TouchableHighlight style={styles.btn} onPress={login}>
-            <View style={styles.btn_container}>
-              <Image
-                source={require("../assets/login/signin.png")}
-                style={styles.logo_btn}
+    <LinearGradient colors={["#990070", "white"]}>
+      <View style={styles.container}>
+        <View style={styles.card}>
+          <Image
+            source={require("../assets/logoUNR.png")}
+            style={styles.logo}
+          ></Image>
+          <Text style={styles.title}>Ingresar al sistema</Text>
+          <View style={styles.form}>
+            <View>
+              <Text>DNI</Text>
+              <TextInput
+                style={styles.textInput}
+                onChangeText={(text) => setDni(text)}
+                keyboardType="email-address"
               />
-              <Text style={styles.btnText}>INGRESAR</Text>
             </View>
-          </TouchableHighlight>
+            <View>
+              <Text>Clave</Text>
+              <TextInput
+                style={styles.textInput}
+                onChangeText={(text) => setPassword(text)}
+                secureTextEntry
+              />
+            </View>
+            <TouchableHighlight style={styles.btn} onPress={login}>
+              <View style={styles.btn_container}>
+                <Image
+                  source={require("../assets/login/signin.png")}
+                  style={styles.logo_btn}
+                />
+                <Text style={styles.btnText}>INGRESAR</Text>
+              </View>
+            </TouchableHighlight>
+          </View>
         </View>
       </View>
-    </View>
+    </LinearGradient>
   );
 };
 
@@ -71,13 +70,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  backgroundImage: {
-    resizeMode: "cover",
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-  },
+
   title: {
     fontSize: 20.5,
     fontFamily: "RobotoBold",
@@ -92,6 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderTopColor: "#006187",
     borderTopWidth: 5,
+    borderRadius: 10,
   },
   form: {
     width: "100%",
@@ -111,6 +105,7 @@ const styles = StyleSheet.create({
     width: 152,
     height: 56,
     color: "white",
+    borderRadius: 5,
   },
   btn_container: {
     width: "100%",
