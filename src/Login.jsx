@@ -9,16 +9,20 @@ import {
   TextInput,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import loginService from "./Services/login.service";
 
 const Login = () => {
+  const navigation = useNavigation();
   const [password, setPassword] = useState("");
   const [dni, setDni] = useState("");
-  const navigation = useNavigation();
 
   const validation = () => {};
 
   const login = () => {
-    navigation.navigate("Home");
+    console.log("hola");
+    setTimeout(() => {
+      navigation.navigate("Home");
+    }, 1000);
   };
 
   return (
@@ -28,6 +32,10 @@ const Login = () => {
           <Image
             source={require("../assets/logoUNR.png")}
             style={styles.logo}
+          ></Image>
+          <Image
+            source={require("../assets/Rolling-1s-200px.gif")}
+            style={styles.load}
           ></Image>
           <Text style={styles.title}>Ingresar al sistema</Text>
           <View style={styles.form}>
@@ -70,7 +78,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
+  load: {
+    position: "absolute",
+    width: 24,
+    height: 24,
+    top: "50%",
+  },
   title: {
     fontSize: 20.5,
     fontFamily: "RobotoBold",
