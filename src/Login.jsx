@@ -15,14 +15,36 @@ const Login = () => {
   const navigation = useNavigation();
   const [password, setPassword] = useState("");
   const [dni, setDni] = useState("");
+  const [loggin, setLoggin] = useState(false);
+  const [validate, setvalidate] = useState(false);
 
-  const validation = () => {};
+  const onChangeText = (text, type) => {
+    type === "dni" ? setDni(dni + text) : setPassword(password + text);
+    validation();
+  };
+
+  const validation = () => {
+    if (dni.length > 7 && password.length > 7) {
+      setvalidate(true);
+    } else {
+      setvalidate(false);
+    }
+  };
 
   const login = () => {
-    console.log("hola");
-    setTimeout(() => {
-      navigation.navigate("Home");
-    }, 1000);
+    if (!validate) {
+      setLoggin(true);
+      setTimeout(() => {
+        setLoggin(false);
+        loginService(dni, password);
+        setPassword("");
+        setDni("");
+        navigation.navigate("Home");
+      }, 100);
+    } else {
+      alert("Debe completar los campos");
+      return;
+    }
   };
 
   return (
@@ -33,25 +55,27 @@ const Login = () => {
             source={require("../assets/logoUNR.png")}
             style={styles.logo}
           ></Image>
-          <Image
-            source={require("../assets/Rolling-1s-200px.gif")}
-            style={styles.load}
-          ></Image>
+          {loggin && (
+            <Image
+              source={require("../assets/Rolling-1s-200px.gif")}
+              style={styles.load}
+            ></Image>
+          )}
           <Text style={styles.title}>Ingresar al sistema</Text>
           <View style={styles.form}>
             <View>
               <Text>DNI</Text>
               <TextInput
+                keyboardType="numeric"
                 style={styles.textInput}
-                onChangeText={(text) => setDni(text)}
-                keyboardType="email-address"
+                onChangeText={(text) => onChangeText(text, "dni")}
               />
             </View>
             <View>
               <Text>Clave</Text>
               <TextInput
                 style={styles.textInput}
-                onChangeText={(text) => setPassword(text)}
+                onChangeText={(text) => onChangeText(text, "password")}
                 secureTextEntry
               />
             </View>

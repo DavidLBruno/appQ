@@ -1,21 +1,23 @@
+import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import ProgressCircle from "./components/Circle";
 
-const Home = () => {
+const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Ir a Acerca de</Text>
+      <Text>My Home Screen</Text>
+      <ProgressCircle />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    height: "100%",
-    width: "100%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    height: "100%",
   },
 });
 
-export default Home;
+export default HomeScreen;
